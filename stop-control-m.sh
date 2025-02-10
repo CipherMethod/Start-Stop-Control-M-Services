@@ -1,10 +1,12 @@
 #!/bin/sh
 # Stop Control-M Services
 #
-# 20240207 jah - developed and tested on 9.0.21.200
+# 20240207 jah - developed and tested on 9.0.21.200, 9.0.21.300
 # 20241017 jah - single control-m user/directory conversion
 # 20250206 jah - change em -M option to -all
+# 20250210 jah - notify shutdown of micro services started
 
+echo "Start shutdown of micro services"
 su - control-m -c "ctmsca shutdown -f"
 su - control-m -c "em ctl -mcs -C Config_Agent -all -cmd shutdown" 2>/dev/null
 [ "$?" = "1" ] && echo "EM Services Already Down?"
